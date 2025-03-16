@@ -10,4 +10,9 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+
+    public function complete()
+    {
+        return view('auth.registration_completed');
+    }
 }

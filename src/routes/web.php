@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/register', [RegisteredUserController::class, 'index'])->name('register');
+Route::get('/thanks', [RegisteredUserController::class, 'complete'])->name('thanks');
+Route::get('/login', [UserLoginController::class, 'index'])->name('login');
