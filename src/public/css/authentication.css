@@ -1,0 +1,34 @@
+:root {
+    --primary-blue: #4361ee;
+}
+
+.registration-card {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: var(--primary-blue);
+    border: none;
+}
+
+.input-group-text {
+    padding-left: 0;
+}
+
+.form-control:focus {
+    border-color: var(--primary-blue);
+}
+
+.content {
+    width: 30%;
+}
+
+.register-btn {
+    background-color: var(--primary-blue);
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
