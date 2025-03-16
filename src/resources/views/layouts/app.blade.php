@@ -17,14 +17,14 @@
     <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center position-relative">
         <!-- ロゴ部分 -->
         <div class="position-absolute top-0 start-0 m-3 d-flex align-items-center custom-position">
-        <button class="btn logo-btn p-2 d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas">
-            <div class="hamburger-icon">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-            </div>
-        </button>
-        <span class="logo-text ms-2">Rese</span>
+            <button class="btn logo-btn p-2 d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas">
+                <div class="hamburger-icon">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+                </div>
+            </button>
+            <span class="logo-text ms-2">Rese</span>
         </div>
         <div class="content">
         @yield('content')
@@ -33,8 +33,13 @@
 
     <!-- オフキャンバスメニュー -->
     <div class="offcanvas offcanvas-start w-100" tabindex="-1" id="menuOffcanvas">
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close ms-auto position-absolute top-0 start-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="position-absolute top-0 start-0 m-3 d-flex align-items-center custom-position">
+            <button type="button" class="btn logo-btn p-2 d-flex justify-content-center align-items-center" data-bs-dismiss="offcanvas" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
         </div>
         <div class="offcanvas-body d-flex flex-column align-items-center justify-content-center">
             <div class="d-flex flex-column gap-4 text-center">
