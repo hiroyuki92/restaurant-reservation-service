@@ -6,7 +6,7 @@
     width: 300px;
 }
 
-/* .reservation-card {
+.reservation-card {
     background-color: var(--primary-blue);
     color: white;
     display: flex;
@@ -18,4 +18,4 @@
 .container-fluid {
     align-items: flex-start  !important;
     padding-top: 100px;
-} */
+}
