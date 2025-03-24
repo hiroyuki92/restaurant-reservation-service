@@ -10,4 +10,9 @@ class ShopController extends Controller
     {
         return view('restaurant_list');
     }
+
+    public function detail()
+    {
+        return view('restaurant_detail');
+    }
 }

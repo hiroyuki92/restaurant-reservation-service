@@ -24,3 +24,4 @@ Route::get('/login', [UserLoginController::class, 'index'])->name('login');
 
 Route::get('/done', [ReservationController::class, 'complete'])->name('done');
 Route::get('/', [ShopController::class, 'index'])->name('shop');
+Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
