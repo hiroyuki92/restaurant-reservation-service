@@ -6,3 +6,16 @@
     width: 300px;
 }
 
+.reservation-card {
+    background-color: var(--primary-blue);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.container-fluid {
+    align-items: flex-start  !important;
+    padding-top: 100px;
+}

@@ -57,19 +57,19 @@
     <!-- レストラン1 -->
     <div class="col">
     <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-hqXx1Slj0w6M9jBwiEFslE2OYICi2K.png" class="card-img-top restaurant-img" alt="仙人">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-hqXx1Slj0w6M9jBwiEFslE2OYICi2K.png" class="card-img-top restaurant-img rounded" alt="仙人">
         <div class="card-body">
-        <h5 class="card-title">仙人</h5>
-        <p class="card-text">
-            <span class="badge text-dark">#東京都</span>
-            <span class="badge text-dark">#寿司</span>
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="btn btn-primary details-btn">詳しくみる</a>
-            <button class="btn btn-link heart-btn p-0">
-            <i class="bi bi-heart text-secondary"></i>
-            </button>
-        </div>
+            <h5 class="card-title">仙人</h5>
+            <p class="card-text">
+                <span class="badge text-dark">#東京都</span>
+                <span class="badge text-dark">#寿司</span>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="btn btn-primary details-btn">詳しくみる</a>
+                <button class="btn btn-link heart-btn p-0">
+                <i class="bi bi-heart text-secondary"></i>
+                </button>
+            </div>
         </div>
     </div>
     </div>

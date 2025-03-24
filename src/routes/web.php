@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\UserLoginController;
 use App\Http\Controllers\User\ReservationController;
+use App\Http\Controllers\User\MyPageController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::get('/login', [UserLoginController::class, 'index'])->name('login');
 Route::get('/done', [ReservationController::class, 'complete'])->name('done');
 Route::get('/', [ShopController::class, 'index'])->name('shop');
 Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
+Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
