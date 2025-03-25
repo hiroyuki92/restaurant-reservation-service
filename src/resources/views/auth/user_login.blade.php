@@ -11,6 +11,7 @@
     </div>
     <div class = "card-body p-4">
         <form >
+            
             <!-- メール -->
             <div class="input-group mb-3 border-0 border-bottom">
                 <span class="input-group-text bg-transparent border-0">
