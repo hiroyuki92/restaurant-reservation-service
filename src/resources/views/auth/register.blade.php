@@ -10,7 +10,7 @@
         Registration
     </div>
     <div class = "card-body p-4">
-        <form action="/register" method="post">
+        <form action="/register" method="post" novalidate>
             @csrf
             <!-- ユーザー名 -->
             <div class="input-group mb-3 border-0 border-bottom">
