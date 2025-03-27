@@ -37,3 +37,9 @@
     background-color: var(--primary-blue);
     color: white;
 }
+
+.form__error {
+    color: #ff333f;
+    margin-top: 15px;
+    font-weight: bold;
+}
