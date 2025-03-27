@@ -50,9 +50,17 @@
         </div>
         <div class="offcanvas-body d-flex flex-column align-items-center justify-content-center">
             <div class="d-flex flex-column gap-4 text-center">
-                <a href="#" class="menu-link">Home</a>
-                <a href="#" class="menu-link">Registration</a>
-                <a href="#" class="menu-link">Login</a>
+                <a href="/" class="menu-link">Home</a>
+                @if (Auth::check())
+                <form action="/logout" method="post" class="d-flex flex-column gap-4">
+                    @csrf
+                    <a href="/mypage" class="menu-link">Mypage</a>
+                    <button type="submit" class="menu-link logout-link">Logout</button>
+                </form>
+                @else
+                    <a href="/register" class="menu-link">Registration</a>
+                    <a href="/login" class="menu-link">Login</a>
+                @endif
             </div>
         </div>
     </div>

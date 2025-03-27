@@ -23,6 +23,7 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/thanks', [RegisteredUserController::class, 'complete'])->name('thanks');
 Route::get('/login', [UserLoginController::class, 'index']);
 Route::post('/login', [UserLoginController::class, 'login'])->name('login');
+Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
 
 
 Route::get('/done', [ReservationController::class, 'complete'])->name('done');

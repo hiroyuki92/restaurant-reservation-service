@@ -65,16 +65,10 @@ header {
     margin-bottom: 0;
 }
 
-.logo-text {
-    color: var(--primary-blue);
-    font-size: 1.5rem;
-    font-weight: bold;
-}
 
 .logo-text {
-    color: #305DFF;
+    color: var(--primary-blue);
     font-weight: bold;
-    margin-left: 20px;
     font-size: 20px;
 }
 
@@ -82,4 +76,12 @@ header {
     color: var(--primary-blue);
     text-decoration: none;
     font-size: 1.5rem;
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.d-flex {
+    display: flex;
 }

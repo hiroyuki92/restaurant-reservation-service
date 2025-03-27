@@ -25,4 +25,10 @@ class UserLoginController extends Controller
             'email' => 'ログイン情報が登録されていません'
         ]);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
