@@ -1,5 +1,5 @@
 
-name: Run PHPUnit Tests
+name: Run PHPUnit Tests with MySQL and phpMyAdmin
 
 on:
   push:
@@ -10,64 +10,71 @@ on:
       - main
 
 jobs:
-  phpunit:
+  test:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+      phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+          - 8080:80
+        env:
+          PMA_HOST: mysql
+          PMA_PORT: 3306
+        options: --health-cmd="curl --silent --fail http://localhost:80" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
-      # コードのチェックアウト
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      # Dockerのセットアップ
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        
-      # マルチアーキテクチャサポートのためのQEMU設定
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
-          platforms: 'arm64,amd64'
+          php-version: '8.2'
+          extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite, gd, curl, zip
+          coverage: xdebug
 
-      # Docker Composeをインストール
-      - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose-plugin
-          docker compose version
-          
-      # Dockerコンテナをビルドして起動
-      - name: Set up Docker Compose
-        run: docker compose up -d
-        
-      # コンテナが起動したことを確認
-      - name: Check running containers
-        run: docker compose ps
-
-      # 依存関係のインストール
       - name: Install dependencies
-        run: docker compose exec -T php composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
-
-      # テスト実行前にデータベースの準備
-      - name: Prepare database
         run: |
-          docker compose exec -T php php artisan migrate:fresh --seed --env=testing
-          
-      # PHPUnitテストの実行
-      - name: Run PHPUnit Tests
-        run: docker compose exec -T php php artisan test --parallel --processes=4
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install --no-interaction --prefer-dist
+        working-directory: ./src
 
-      # テスト結果のサマリー表示
-      - name: Display test summary
-        if: always()
+      - name: Prepare .env file
         run: |
-          echo "PHPUnit Tests completed."
-          if [ ${{ job.status }} == 'success' ]; then
-            echo "All tests passed successfully!"
-          else
-            echo "Some tests failed. Check the logs for details."
-          fi
+          cp src/.env.example src/.env.testing
+          echo "DB_CONNECTION=mysql" >> src/.env.testing
+          echo "DB_HOST=127.0.0.1" >> src/.env.testing
+          echo "DB_PORT=3306" >> src/.env.testing
+          echo "DB_DATABASE=test_db" >> src/.env.testing
+          echo "DB_USERNAME=laravel_user" >> src/.env.testing
+          echo "DB_PASSWORD=laravel_pass" >> src/.env.testing
+          php artisan key:generate --env=testing
 
-      # コンテナを停止してクリーンアップ
-      - name: Shut down Docker Compose
-        if: always()
-        run: docker compose down
+      - name: Generate application key
+        run: php artisan key:generate --env=testing
+        working-directory: ./src
+
+      - name: Run migrations
+        run: php artisan migrate:fresh --env=testing
+
+      - name: Run tests
+        run: php artisan test --env=testing
+
+      - name: Check phpMyAdmin URL
+        run: |
+          echo "phpMyAdmin is available at http://localhost:8080"
