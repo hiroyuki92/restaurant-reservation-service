@@ -52,7 +52,7 @@ jobs:
         run: |
           curl -sS https://getcomposer.org/installer | php
           php composer.phar install --no-interaction --prefer-dist
-        working-directory: ./src
+        working-directory: ./src  # composer.jsonがsrcディレクトリ内にあるため
 
       - name: Prepare .env file
         run: |
@@ -63,17 +63,19 @@ jobs:
           echo "DB_DATABASE=test_db" >> src/.env.testing
           echo "DB_USERNAME=laravel_user" >> src/.env.testing
           echo "DB_PASSWORD=laravel_pass" >> src/.env.testing
-          php artisan key:generate --env=testing
+        working-directory: ./src  # .env.exampleがsrcディレクトリ内にあるため
 
       - name: Generate application key
         run: php artisan key:generate --env=testing
-        working-directory: ./src
+        working-directory: ./src  # artisanコマンドをsrcディレクトリ内で実行
 
       - name: Run migrations
         run: php artisan migrate:fresh --env=testing
+        working-directory: ./src  # artisanコマンドをsrcディレクトリ内で実行
 
       - name: Run tests
         run: php artisan test --env=testing
+        working-directory: ./src  # artisanコマンドをsrcディレクトリ内で実行
 
       - name: Check phpMyAdmin URL
         run: |
