@@ -57,13 +57,13 @@ jobs:
       - name: Prepare .env file
         run: |
           cp .env.example .env.testing
-          echo "DB_CONNECTION=mysql" >> src/.env.testing
-          echo "DB_HOST=127.0.0.1" >> src/.env.testing
-          echo "DB_PORT=3306" >> src/.env.testing
-          echo "DB_DATABASE=test_db" >> src/.env.testing
-          echo "DB_USERNAME=laravel_user" >> src/.env.testing
-          echo "DB_PASSWORD=laravel_pass" >> src/.env.testing
-        working-directory: ./src  # .env.exampleがsrcディレクトリ内にあるため
+          echo "DB_CONNECTION=mysql" >> .env.testing
+          echo "DB_HOST=127.0.0.1" >> .env.testing
+          echo "DB_PORT=3306" >> .env.testing
+          echo "DB_DATABASE=test_db" >> .env.testing
+          echo "DB_USERNAME=laravel_user" >> .env.testing
+          echo "DB_PASSWORD=laravel_pass" >> .env.testing
+        working-directory: ./src
 
       - name: Generate application key
         run: php artisan key:generate --env=testing
