@@ -1,0 +1,57 @@
+
+name: Run PHPUnit Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.26
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_db
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-start-period=10s
+
+    steps:
+      # コードのチェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Dockerのセットアップ
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # Dockerコンテナをビルドして起動
+      - name: Set up Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d  # Docker Composeを使ってコンテナを起動
+
+      # 依存関係のインストール
+      - name: Install dependencies
+        run: |
+          docker-compose exec app composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
+
+      # PHPUnitテストの実行
+      - name: Run PHPUnit Tests
+        run: |
+          docker-compose exec app ./vendor/bin/phpunit --configuration phpunit.xml
+
+      # コンテナを停止してクリーンアップ
+      - name: Shut down Docker Compose
+        run: |
+          docker-compose down
