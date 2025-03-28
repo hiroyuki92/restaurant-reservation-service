@@ -56,7 +56,7 @@ jobs:
 
       - name: Prepare .env file
         run: |
-          cp src/.env.example src/.env.testing
+          cp .env.example .env.testing
           echo "DB_CONNECTION=mysql" >> src/.env.testing
           echo "DB_HOST=127.0.0.1" >> src/.env.testing
           echo "DB_PORT=3306" >> src/.env.testing
