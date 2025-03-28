@@ -49,7 +49,7 @@ jobs:
       # PHPUnitテストの実行
       - name: Run PHPUnit Tests
         run: |
-          docker-compose exec app ./vendor/bin/phpunit --configuration phpunit.xml
+          docker-compose exec app ./vendor/bin/phpunit --configuration /var/www/src/phpunit.xml
 
       # コンテナを停止してクリーンアップ
       - name: Shut down Docker Compose
