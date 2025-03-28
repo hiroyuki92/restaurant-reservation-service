@@ -28,26 +28,33 @@ jobs:
         with:
           platforms: 'arm64,amd64'
 
+      # Docker Composeをインストール
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose-plugin
+          docker compose version
+          
       # Dockerコンテナをビルドして起動
       - name: Set up Docker Compose
-        run: docker-compose up -d
+        run: docker compose up -d
         
       # コンテナが起動したことを確認
       - name: Check running containers
-        run: docker-compose ps
+        run: docker compose ps
 
       # 依存関係のインストール
       - name: Install dependencies
-        run: docker-compose exec -T php composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
+        run: docker compose exec -T php composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader
 
       # テスト実行前にデータベースの準備
       - name: Prepare database
         run: |
-          docker-compose exec -T php php artisan migrate:fresh --seed --env=testing
+          docker compose exec -T php php artisan migrate:fresh --seed --env=testing
           
       # PHPUnitテストの実行
       - name: Run PHPUnit Tests
-        run: docker-compose exec -T php php artisan test --parallel --processes=4
+        run: docker compose exec -T php php artisan test --parallel --processes=4
 
       # テスト結果のサマリー表示
       - name: Display test summary
@@ -63,4 +70,4 @@ jobs:
       # コンテナを停止してクリーンアップ
       - name: Shut down Docker Compose
         if: always()
-        run: docker-compose down
+        run: docker compose down
