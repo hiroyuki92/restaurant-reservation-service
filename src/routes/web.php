@@ -26,6 +26,7 @@ Route::post('/login', [UserLoginController::class, 'login'])->name('login');
 Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
 
 
+
 Route::get('/done', [ReservationController::class, 'complete'])->name('done');
 Route::get('/', [ShopController::class, 'index'])->name('shop');
 Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
