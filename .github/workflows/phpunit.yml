@@ -28,14 +28,6 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
-      phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        ports:
-          - 8080:80
-        env:
-          PMA_HOST: mysql
-          PMA_PORT: 3306
-        options: --health-cmd="curl --silent --fail http://localhost:80" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout code
@@ -45,39 +37,37 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite, gd, curl, zip
+          extensions: mbstring, dom, fileinfo, sqlite3, pdo_sqlite, mysql, pdo_mysql, gd, curl, zip
           coverage: xdebug
+
+      - name: Verify MySQL connection
+        run: |
+          mysql --host 127.0.0.1 --port 3306 -uroot -proot -e "SHOW DATABASES;"
 
       - name: Install dependencies
         run: |
-          curl -sS https://getcomposer.org/installer | php
-          php composer.phar install --no-interaction --prefer-dist
-        working-directory: ./src  # composer.jsonがsrcディレクトリ内にあるため
+          composer install --no-interaction --prefer-dist
+        working-directory: ./src
 
       - name: Prepare .env file
         run: |
           cp .env.example .env.testing
-          echo "DB_CONNECTION=mysql" >> .env.testing
-          echo "DB_HOST=mysql" >> .env.testing
-          echo "DB_PORT=3306" >> .env.testing
-          echo "DB_DATABASE=demo_test" >> .env.testing
-          echo "DB_USERNAME=laravel_user" >> .env.testing
-          echo "DB_PASSWORD=laravel_pass" >> .env.testing
-          echo "SESSION_DRIVER=array" >> .env.testing
+          sed -i 's/DB_HOST=.*/DB_HOST=127.0.0.1/' .env.testing
+          sed -i 's/DB_PORT=.*/DB_PORT=3306/' .env.testing
+          sed -i 's/DB_DATABASE=.*/DB_DATABASE=test_db/' .env.testing
+          sed -i 's/DB_USERNAME=.*/DB_USERNAME=laravel_user/' .env.testing
+          sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=laravel_pass/' .env.testing
+          sed -i 's/SESSION_DRIVER=.*/SESSION_DRIVER=array/' .env.testing
         working-directory: ./src
 
       - name: Generate application key
         run: php artisan key:generate --env=testing
-        working-directory: ./src  # artisanコマンドをsrcディレクトリ内で実行
+        working-directory: ./src
 
       - name: Run migrations
-        run: php artisan migrate:fresh --env=testing
-        working-directory: ./src  # artisanコマンドをsrcディレクトリ内で実行
+        run: php artisan migrate:fresh --env=testing --force
+        working-directory: ./src
 
       - name: Run tests
         run: php artisan test --env=testing
-        working-directory: ./src  # artisanコマンドをsrcディレクトリ内で実行
-
-      - name: Check phpMyAdmin URL
-        run: |
-          echo "phpMyAdmin is available at http://localhost:8080"
+        working-directory: ./src
