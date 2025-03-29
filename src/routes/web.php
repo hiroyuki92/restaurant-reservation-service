@@ -24,10 +24,11 @@ Route::get('/thanks', [RegisteredUserController::class, 'complete'])->name('than
 Route::get('/login', [UserLoginController::class, 'index']);
 Route::post('/login', [UserLoginController::class, 'login'])->name('login');
 Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
-
-
-
-Route::get('/done', [ReservationController::class, 'complete'])->name('done');
 Route::get('/', [ShopController::class, 'index'])->name('shop');
 Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
-Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/done', [ReservationController::class, 'complete'])->name('done');
+    Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
+});
