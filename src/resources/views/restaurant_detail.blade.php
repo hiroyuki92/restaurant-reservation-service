@@ -8,20 +8,20 @@
 <div class="row h-100">
     <div class="col-md-7 pe-md-5">
         <div class="d-flex align-items-center mb-4 mt-5 ">
-            <a href="index.html" class="btn btn-light me-3 custom-icon-btn">
+            <a href="/" class="btn btn-light me-3 custom-icon-btn">
                 <i class="bi bi-chevron-left"></i>
             </a>
-            <div class="fs-3 fw-bold mb-0">仙人</div>
+            <div class="fs-3 fw-bold mb-0">{{ $restaurant->name }}</div>
         </div>
         <div class="mb-3">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-bjL9YmJskhV0HnycLygrULt3nOujbh.png" class="img-fluid restaurant-img" alt="仙人">
+            <img src="{{ asset('/' . $restaurant->image_url) }}" class="img-fluid restaurant-img" alt="{{ $restaurant->name }}">
         </div>
         <div class="mb-3">
-            <span class="badge text-dark bg-light">#東京都</span>
-            <span class="badge text-dark bg-light">#寿司</span>
+            <span class="badge text-dark bg-light fs-6">#{{ $restaurant->area->name }}</span>
+            <span class="badge text-dark bg-light fs-6">#{{ $restaurant->genre->name }}</span>
         </div>
         <p class="text">
-            料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。
+            "{{ $restaurant->description }}"
         </p>
     </div>
     <div class="col-md-5 d-flex">

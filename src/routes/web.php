@@ -25,7 +25,7 @@ Route::get('/login', [UserLoginController::class, 'index']);
 Route::post('/login', [UserLoginController::class, 'login'])->name('login');
 Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
 Route::get('/', [ShopController::class, 'index'])->name('shop');
-Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
+Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail');
 
 
 Route::middleware('auth')->group(function () {

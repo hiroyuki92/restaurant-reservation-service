@@ -58,7 +58,7 @@
     @foreach($restaurants as $restaurant)
     <div class="col">
         <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-            <img src="{{ $restaurant->image_url }}" class="card-img-top restaurant-img rounded" alt="{{ $restaurant->name }}">
+            <img src="{{ asset('/' . $restaurant->image_url) }}" class="card-img-top restaurant-img rounded" alt="{{ $restaurant->name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ $restaurant->name }}</h5>
                 <p class="card-text">

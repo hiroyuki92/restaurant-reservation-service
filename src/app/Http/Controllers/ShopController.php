@@ -13,8 +13,9 @@ class ShopController extends Controller
         return view('restaurant_list', compact('restaurants'));
     }
 
-    public function detail()
+    public function detail($shop_id)
     {
-        return view('restaurant_detail');
+        $restaurant = Restaurant::with(['area', 'genre'])->findOrFail($shop_id);
+        return view('restaurant_detail', compact('restaurant'));
     }
 }
