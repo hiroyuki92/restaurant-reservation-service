@@ -21,7 +21,7 @@
             <span class="badge text-dark bg-light fs-6">#{{ $restaurant->genre->name }}</span>
         </div>
         <p class="text">
-            "{{ $restaurant->description }}"
+            {{ $restaurant->description }}
         </p>
     </div>
     <div class="col-md-5 d-flex">
@@ -30,43 +30,46 @@
                 <h3 class="card-title text-white mb-4">予約</h3>
                 <form class="d-flex flex-column flex-grow-1">
                     <div class="mb-3">
-                        <input type="date" class="form-control" value="2021-04-01">
+                        <input type="date"  id="dateInput" class="form-control" value="2021-04-01">
                     </div>
                     <div class="mb-3">
-                        <select class="form-select">
+                        <select id="timeSelect" class="form-select">
                         <option selected>17:00</option>
                         <option>18:00</option>
                         <option>19:00</option>
                         <option>20:00</option>
                         <option>21:00</option>
+                        <option>22:00</option>
+                        <option>23:00</option>
                         </select>
                     </div>
                     <div class="mb-4">
-                        <select class="form-select">
+                        <select id="numberSelect" class="form-select">
                         <option selected>1人</option>
                         <option>2人</option>
                         <option>3人</option>
                         <option>4人</option>
-                        <option>5人以上</option>
+                        <option>5人</option>
+                        <option>6人以上</option>
                         </select>
                     </div>
                     <div class="card bg-light-blue text-white mb-4">
                     <div class="card-body p-3">
                         <div class="row mb-2">
                             <div class="col-4">Shop</div>
-                            <div class="col-8">仙人</div>
+                            <div class="col-8">{{ $restaurant->name }}</div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-4">Date</div>
-                            <div class="col-8">2021-04-01</div>
+                            <div class="col-8" id="dateDisplay">2021-04-01</div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-4">Time</div>
-                            <div class="col-8">17:00</div>
+                            <div class="col-8" id="timeDisplay">17:00</div>
                         </div>
                         <div class="row">
                             <div class="col-4">Number</div>
-                            <div class="col-8">1人</div>
+                            <div class="col-8" id="numberDisplay">1人</div>
                         </div>
                         </div>
                     </div>
@@ -77,6 +80,28 @@
             </div>
         </div>
     </div>
+    <script>
+        const dateInput = document.getElementById('dateInput');
+        const timeSelect = document.getElementById('timeSelect');
+        const numberSelect = document.getElementById('numberSelect');
+        
+        const dateDisplay = document.getElementById('dateDisplay');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const numberDisplay = document.getElementById('numberDisplay');
+        
+        // 日付、時間、人数が変更されたときに表示を更新
+        dateInput.addEventListener('input', function() {
+            dateDisplay.textContent = dateInput.value;
+        });
+        
+        timeSelect.addEventListener('change', function() {
+            timeDisplay.textContent = timeSelect.value;
+        });
+        
+        numberSelect.addEventListener('change', function() {
+            numberDisplay.textContent = numberSelect.value;
+        });
+    </script>
 </div>
 
 @endsection
