@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Favorite::class);
     }
+
+    public function hasFavorited($restaurant)
+    {
+        return $this->favorites()->where('restaurant_id', $restaurant->id)->exists();
+    }
 }

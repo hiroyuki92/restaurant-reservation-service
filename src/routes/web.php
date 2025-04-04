@@ -32,4 +32,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/done', [ReservationController::class, 'complete'])->name('done');
     Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
     Route::post('/reservations', [ReservationController::class, 'store'])->name('reservation');
+    Route::post('/favorites/{restaurantId}', [ShopController::class, 'toggleFavorite']);
 });
