@@ -31,4 +31,5 @@ Route::get('/detail/{shop_id}', [ShopController::class, 'detail'])->name('detail
 Route::middleware('auth')->group(function () {
     Route::get('/done', [ReservationController::class, 'complete'])->name('done');
     Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
+    Route::post('/reservations', [ReservationController::class, 'store'])->name('reservation');
 });

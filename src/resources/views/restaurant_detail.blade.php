@@ -26,14 +26,15 @@
     </div>
     <div class="col-md-5 d-flex">
         <div class="card border-0 rounded-2 reservation-card w-100">
-            <div class="card-body flex-grow-1">
-                <h3 class="card-title text-white mb-4">予約</h3>
-                <form class="d-flex flex-column flex-grow-1">
+            <form class="d-flex flex-column flex-grow-1"  method="POST" action="{{ route('reservation') }}">
+                @csrf
+                <div class="card-body flex-grow-1">
+                    <h3 class="card-title text-white mb-4">予約</h3>
                     <div class="mb-3">
-                        <input type="date"  id="dateInput" class="form-control" value="2021-04-01">
+                        <input type="date" name="reservation_time"  id="dateInput" class="form-control" value="2021-04-01">
                     </div>
                     <div class="mb-3">
-                        <select id="timeSelect" class="form-select">
+                        <select name="time"  id="timeSelect" class="form-select">
                         <option selected>17:00</option>
                         <option>18:00</option>
                         <option>19:00</option>
@@ -44,13 +45,13 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <select id="numberSelect" class="form-select">
-                        <option selected>1人</option>
-                        <option>2人</option>
-                        <option>3人</option>
-                        <option>4人</option>
-                        <option>5人</option>
-                        <option>6人以上</option>
+                        <select name="number_of_people" id="numberSelect" class="form-select">
+                            <option value="1" selected>1人</option>
+                            <option value="2">2人</option>
+                            <option value="3">3人</option>
+                            <option value="4">4人</option>
+                            <option value="5">5人</option>
+                            <option value="6">6人以上</option>
                         </select>
                     </div>
                     <div class="card bg-light-blue text-white mb-4">
@@ -73,11 +74,13 @@
                         </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="card-footer p-0 border-0">
-                <button type="submit" class="btn btn-primary w-100 py-2 reserve-btn">予約する</button>
-            </div>
+                </div>
+                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+                <div class="card-footer p-0 border-0">
+                    <button type="submit" class="btn btn-primary w-100 py-2 reserve-btn">予約する</button>
+                </div>
+            </form>
         </div>
     </div>
     <script>
