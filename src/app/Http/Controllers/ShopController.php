@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Favorite;
+use App\Models\Area;
+use App\Models\Genre;
 
 class ShopController extends Controller
 {
     public function index()
     {
         $restaurants = Restaurant::with(['area', 'genre'])->get();
-        return view('restaurant_list', compact('restaurants'));
+        $areas = Area::all();
+        $genres = Genre::all();
+        return view('restaurant_list', compact('restaurants', 'areas', 'genres'));
     }
 
     public function detail($shop_id)
@@ -43,4 +47,17 @@ class ShopController extends Controller
 
         return response()->json(['favorited' => $favorited]);
     }
+
+    public function search(Request $request)
+    {
+        $restaurants = Restaurant::with('area', 'genre')->AreaSearch($request->area_id)
+        ->GenreSearch($request->genre_id)
+        ->KeywordSearch($request->keyword)
+        ->get();
+        $areas = Area::all();
+        $genres = Genre::all();
+
+        return view('restaurant_list', compact('restaurants', 'areas', 'genres'));
+    }
+
 }

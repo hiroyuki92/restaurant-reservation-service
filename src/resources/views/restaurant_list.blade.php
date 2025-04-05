@@ -12,37 +12,26 @@
                 <div class="card-body p-0">
                     <div class="d-flex align-items-center search-container">
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle text-dark border-0 px-3" type="button" data-bs-toggle="dropdown">
-                                All area
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">東京都</a></li>
-                                <li><a class="dropdown-item" href="#">大阪府</a></li>
-                                <li><a class="dropdown-item" href="#">福岡県</a></li>
-                                <li><a class="dropdown-item" href="#">北海道</a></li>
-                                <li><a class="dropdown-item" href="#">沖縄県</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle text-dark border-0 px-3" type="button" data-bs-toggle="dropdown">
-                                All genre
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">寿司</a></li>
-                                <li><a class="dropdown-item" href="#">焼肉</a></li>
-                                <li><a class="dropdown-item" href="#">イタリアン</a></li>
-                                <li><a class="dropdown-item" href="#">ラーメン</a></li>
-                                <li><a class="dropdown-item" href="#">カフェ</a></li>
-                                <li><a class="dropdown-item" href="#">居酒屋</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="input-group border-0">
-                            <span class="input-group-text bg-transparent border-0">
-                                <i class="bi bi-search text-secondary"></i>
-                            </span>
-                            <input type="text" class="form-control border-0 shadow-none" placeholder="Search ...">
+                            <form action="{{ route('search') }}" method="GET" class="d-flex align-items-center">
+                                <select class="btn text-dark border-0 px-3 dropdown-toggle" name="area_id" onchange="this.form.submit()">
+                                    <option value="">All area</option>
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}" {{ request('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
+                                    @endforeach
+                                </select>
+                                <select class="btn text-dark border-0 px-3 dropdown-toggle" name="genre_id" onchange="this.form.submit()">
+                                    <option value="">All genre</option>
+                                    @foreach ($genres as $genre)
+                                        <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group border-0">
+                                    <span class="input-group-text bg-transparent border-0">
+                                        <i class="bi bi-search text-secondary"></i>
+                                    </span>
+                                    <input type="text"  name="keyword" value="{{ old('keyword') }}"  class="form-control border-0 shadow-none" placeholder="Search ...">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
