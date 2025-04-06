@@ -72,7 +72,6 @@
                             <div class="col-4">Number</div>
                             <div class="col-8" id="numberDisplay">1人</div>
                         </div>
-                        </div>
                     </div>
                 </div>
                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
@@ -102,7 +101,7 @@
         });
         
         numberSelect.addEventListener('change', function() {
-            numberDisplay.textContent = numberSelect.value;
+            numberDisplay.textContent = numberSelect.value + '人';
         });
     </script>
 </div>
