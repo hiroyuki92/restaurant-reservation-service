@@ -45,27 +45,29 @@
         @endforeach
     </div>
     <div class="col-md-8">
-        <div class="fs-2 fw-bold mb-5">testさん</div>
+        <div class="fs-2 fw-bold mb-5">{{ auth()->user()->name }}さん</div>
         <div class="mb-4 fw-bold fs-4">お気に入り店舗</div>
-        <div class="row">
-            <div class="col-md-5 col-lg-4 mb-4 me-2">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach ($favorites as $favorite)
+            <div class="col">
                 <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ATYWg28k4wIyVrLuXGOYoePLnFGq67.png" class="restaurant-img w-100 " alt="仙人">
+                    <img src="{{ $favorite->restaurant->image_url }}"  class="restaurant-img w-100 " alt="{{ $favorite->restaurant->name }}">
                     <div class="p-3">
-                        <h5 class="card-title">仙人</h5>
+                        <h5 class="card-title">{{ $favorite->restaurant->name }}</h5>
                         <p class="card-text">
-                            <span class="badge text-dark">#東京都</span>
-                            <span class="badge text-dark">#寿司</span>
+                                <span class="badge text-dark">#{{ $favorite->restaurant->area->name }}</span>
+                                <span class="badge text-dark">#{{ $favorite->restaurant->genre->name }}</span>
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="btn btn-primary details-btn">詳しくみる</a>
+                            <a href="{{ route('detail', $favorite->restaurant->id) }}" class="btn btn-primary details-btn">詳しくみる</a>
                             <button class="btn btn-link heart-btn p-0">
-                            <i class="bi bi-heart-fill text-danger"></i>
+                            <i class="bi bi-heart-fill text-danger fs-3"></i>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>

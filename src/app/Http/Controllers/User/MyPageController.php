@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Restaurant;
+use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 class MyPageController extends Controller
 {
@@ -19,8 +21,12 @@ class MyPageController extends Controller
             $reservation->date = \Carbon\Carbon::parse($reservation->reservation_time)->format('Y-m-d');
             $reservation->time = \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i');
         }
-        
+
+        $user = auth()->user();
+        $favorites = $user->favorites()->with(['restaurant.area', 'restaurant.genre'])->get();
+
         $restaurants = Restaurant::all();
-        return view('mypage', compact('reservations', 'restaurants'));
+        return view('mypage', compact('reservations', 'restaurants', 'favorites'));
     }
+
 }
