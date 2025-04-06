@@ -16,9 +16,13 @@
                         <i class="bi bi-clock fs-4"></i>
                         <div class="mb-0 fs-6 ms-3">予約{{ $loop->iteration }}</div>
                     </div>
-                    <button class="btn text-white rounded-circle">
-                        <i class="bi bi-x-circle fs-4"></i>
-                    </button>
+                    <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn text-white rounded-circle" onclick="return confirm('本当に削除しますか？')">
+                            <i class="bi bi-x-circle fs-4"></i>
+                        </button>
+                    </form>
                 </div>
                 <div class="row mb-2">
                     <div class="col-4">Shop</div>

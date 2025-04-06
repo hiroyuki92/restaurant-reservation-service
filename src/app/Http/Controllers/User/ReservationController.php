@@ -21,9 +21,17 @@ class ReservationController extends Controller
         ]);
         return redirect()->route('done');
     }
-    
+
     public function complete()
     {
         return view('reservation_completed');
+    }
+
+    public function destroy($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+
+        return redirect()->route('mypage');
     }
 }
