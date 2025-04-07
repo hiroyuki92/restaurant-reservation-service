@@ -4,14 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\User\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
-        $reservationTime = $request->reservation_time . ' ' . $request->time;
+        $reservationTime = $request->reservation_date . ' ' . $request->time;
 
         Reservation::create([
             'user_id' => Auth::id(),
