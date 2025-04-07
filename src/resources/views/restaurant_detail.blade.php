@@ -28,12 +28,12 @@
         <div class="card border-0 rounded-2 reservation-card w-100">
             <form class="d-flex flex-column flex-grow-1"  method="POST" action="{{ route('reservation') }}">
                 @csrf
-                <div class="card-body flex-grow-1">
-                    <h3 class="card-title text-white mb-4">予約</h3>
-                    <div class="mb-3">
+                <div class="card-body-reservation flex-grow-1">
+                    <h3 class="card-title text-white  mt-5 mb-4 ms-3">予約</h3>
+                    <div class="mb-3 ms-3 me-3">
                         <input type="date" name="reservation_time"  id="dateInput" class="form-control" value="2021-04-01">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 ms-3 me-3">
                         <select name="time"  id="timeSelect" class="form-select">
                         <option selected>17:00</option>
                         <option>18:00</option>
@@ -44,7 +44,7 @@
                         <option>23:00</option>
                         </select>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 ms-3 me-3">
                         <select name="number_of_people" id="numberSelect" class="form-select">
                             <option value="1" selected>1人</option>
                             <option value="2">2人</option>
@@ -54,7 +54,7 @@
                             <option value="6">6人以上</option>
                         </select>
                     </div>
-                    <div class="card bg-light-blue text-white mb-4">
+                    <div class="card bg-light-blue text-white mb-5 ms-3 me-3">
                     <div class="card-body p-3">
                         <div class="row mb-2">
                             <div class="col-4">Shop</div>
