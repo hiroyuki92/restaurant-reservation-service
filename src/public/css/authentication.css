@@ -43,3 +43,17 @@
     margin-top: 15px;
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+    .registration-card {
+        width: 100% !important;
+        max-width: 500px;
+    }
+
+    .content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

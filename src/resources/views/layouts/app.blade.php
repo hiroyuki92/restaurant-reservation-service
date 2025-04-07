@@ -15,7 +15,7 @@
 
 </head>
 <body class="bg-light">
-    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center position-relative px-5 px-md-6">
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center position-relative px-3 px-md-4">
         <!-- ロゴ部分 -->
         <div class="position-absolute top-0 start-0 mt-3 ms-5 ms-md-6 d-flex align-items-center custom-position">
             <button class="btn logo-btn p-2 d-flex justify-content-center align-items-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas">

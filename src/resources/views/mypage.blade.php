@@ -47,7 +47,7 @@
     <div class="col-md-8">
         <div class="fs-2 fw-bold mb-5">{{ auth()->user()->name }}さん</div>
         <div class="mb-4 fw-bold fs-4">お気に入り店舗</div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row favorites-row row-cols-2 row-cols-md-2 row-cols-md-3 g-3">
             @foreach ($favorites as $favorite)
             <div class="col">
                 <div class="card border-0 shadow-sm rounded-3 overflow-hidden">

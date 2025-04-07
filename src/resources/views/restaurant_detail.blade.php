@@ -25,7 +25,7 @@
         </p>
     </div>
     <div class="col-md-5 d-flex">
-        <div class="card border-0 rounded-2 reservation-card w-100">
+        <div class="card border-0 rounded-2 reservation-card w-100 mt-5">
             <form class="d-flex flex-column flex-grow-1"  method="POST" action="{{ route('reservation') }}">
                 @csrf
                 <div class="card-body-reservation flex-grow-1">
