@@ -45,7 +45,7 @@ class ReservationController extends Controller
         return view('reservation_edit', compact('reservation'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ReservationRequest $request, $id)
     {
         $reservation = Reservation::findOrFail($id);
         $reservationTime = $request->reservation_date . ' ' . $request->time;

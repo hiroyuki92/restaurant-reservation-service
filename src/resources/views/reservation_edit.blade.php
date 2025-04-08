@@ -23,6 +23,9 @@
                     <div class="col-7">
                         <input type="date" name="reservation_date"  id="dateInput" class="form-control"
                         value="{{ $reservation->date }}">
+                        @error('reservation_date')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -37,6 +40,9 @@
                             <option value="22:00" {{ $reservation->time == '22:00' ? 'selected' : '' }}>22:00</option>
                             <option value="23:00" {{ $reservation->time == '23:00' ? 'selected' : '' }}>23:00</option>
                         </select>
+                        @error('time')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
@@ -50,6 +56,9 @@
                             <option value="5" {{ $reservation->number_of_people == 5 ? 'selected' : '' }}>5人</option>
                             <option value="6" {{ $reservation->number_of_people == 6 ? 'selected' : '' }}>6人以上</option>
                         </select>
+                        @error('number_of_people')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
