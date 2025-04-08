@@ -35,4 +35,27 @@ class ReservationController extends Controller
 
         return redirect()->route('mypage');
     }
+
+    public function edit($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->date = \Carbon\Carbon::parse($reservation->reservation_time)->format('Y-m-d');
+        $reservation->time = \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i');
+    
+        return view('reservation_edit', compact('reservation'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservationTime = $request->reservation_date . ' ' . $request->time;
+
+        $reservation->update([
+            'restaurant_id' => $request->restaurant_id,
+            'reservation_time' => $reservationTime,
+            'number_of_people' => $request->number_of_people,
+        ]);
+
+        return redirect()->route('mypage');
+    }
 }

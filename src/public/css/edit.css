@@ -1,0 +1,19 @@
+:root {
+    --primary-blue: #4361ee;
+}
+
+.content {
+    min-height: calc(100vh - 120px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.card {
+    background-color: var(--primary-blue);
+    color: white;
+    margin-top: 10%;
+}
+

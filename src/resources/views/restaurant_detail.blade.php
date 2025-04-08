@@ -62,33 +62,25 @@
                         @error('number_of_people')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
                     </div>
                     <div class="card bg-light-blue text-white mb-5 ms-3 me-3">
-                    <div class="card-body p-3">
-                        <div class="row mb-2">
-                            <div class="col-4">Shop</div>
-                            <div class="col-8">{{ $restaurant->name }}</div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4">Date</div>
-                            <div class="col-8" id="dateDisplay"></div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4">Time</div>
-                            <div class="col-8" id="timeDisplay">17:00</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Number</div>
-                            <div class="col-8" id="numberDisplay">1人</div>
+                        <div class="card-body p-3">
+                            <div class="row mb-2">
+                                <div class="col-4">Shop</div>
+                                <div class="col-8">{{ $restaurant->name }}</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-4">Date</div>
+                                <div class="col-8" id="dateDisplay"></div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-4">Time</div>
+                                <div class="col-8" id="timeDisplay">17:00</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Number</div>
+                                <div class="col-8" id="numberDisplay">1人</div>
+                            </div>
                         </div>
                     </div>
                 </div>

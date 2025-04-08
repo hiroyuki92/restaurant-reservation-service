@@ -34,5 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
     Route::post('/reservations', [ReservationController::class, 'store'])->name('reservation');
     Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+    Route::get('reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
     Route::post('/favorites/{restaurantId}', [ShopController::class, 'toggleFavorite']);
 });

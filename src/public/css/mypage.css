@@ -20,6 +20,19 @@
     padding-top: 100px;
 }
 
+a.btn {
+    background-color: var(--primary-blue);
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+}
+
+a.btn i {
+    font-size: 20px;
+}
+
 @media (max-width: 768px) {
     .pt-5 {
         padding-top: 0 !important;
@@ -31,11 +44,12 @@
 
     .favorites-row {
         flex-direction: row !important;
-}
+    }
 
     .col-md-4, .col-md-8 {
-        width: 100%;
+        width: 80%;
         margin-bottom: 20px;
+        margin-left: 10%;
     }
 
 }

@@ -16,13 +16,15 @@
                         <i class="bi bi-clock fs-4"></i>
                         <div class="mb-0 fs-6 ms-3">予約{{ $loop->iteration }}</div>
                     </div>
-                    <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn text-white rounded-circle" onclick="return confirm('本当に削除しますか？')">
-                            <i class="bi bi-x-circle fs-4"></i>
-                        </button>
-                    </form>
+                    <div class="d-flex">
+                        <form action="{{ route('reservations.destroy', $reservation->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn text-white rounded-circle" onclick="return confirm('本当に削除しますか？')">
+                                <i class="bi bi-x-circle fs-4"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 <div class="row mb-2">
                     <div class="col-4">Shop</div>
@@ -40,6 +42,9 @@
                     <div class="col-4">Number</div>
                     <div class="col-8">{{ $reservation->number_of_people }}人</div>
                 </div>
+                <a href="{{ route('reservations.edit', $reservation->id) }}" class="btn text-white mt-4 w-100 py-2 ">
+                    予約変更
+                </a>
             </div>
         </div>
         @endforeach
