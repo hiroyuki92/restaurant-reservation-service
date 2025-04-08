@@ -55,4 +55,24 @@ class User extends Authenticatable
     {
         return $this->favorites()->where('restaurant_id', $restaurant->id)->exists();
     }
+
+    const ROLE_ADMIN = 'admin';
+    const ROLE_OWNER = 'owner';
+    const ROLE_USER = 'user';
+
+    // ロールチェックメソッド
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isOwner()
+    {
+        return $this->role === self::ROLE_OWNER;
+    }
+
+    public function isUser()
+    {
+        return $this->role === self::ROLE_USER;
+    }
 }

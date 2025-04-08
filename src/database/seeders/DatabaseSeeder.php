@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         $this->call([
             AreasTableSeeder::class,
-            GenresTableSeeder::class,RestaurantsTableSeeder::class,]);
+            GenresTableSeeder::class,RestaurantsTableSeeder::class,
+            UsersTableSeeder::class,]);
     }
 }
