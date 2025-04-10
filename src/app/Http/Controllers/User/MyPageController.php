@@ -23,10 +23,10 @@ class MyPageController extends Controller
         }
 
         $user = auth()->user();
-        $favorites = $user->favorites()->with(['restaurant.area', 'restaurant.genre'])->get();
+        $favorites = $user->favorites()->with(['area', 'genre'])->get();
 
         $restaurants = Restaurant::all();
-        return view('mypage', compact('reservations', 'restaurants', 'favorites'));
+        return view('mypage', compact('user', 'reservations', 'restaurants', 'favorites'));
     }
 
 }

@@ -34,7 +34,7 @@ class Restaurant extends Model
 
     public function favorites()
     {
-        return $this->hasMany(Favorite::class);
+        return $this->belongsToMany(User::class, 'favorites', 'restaurant_id', 'user_id');
     }
 
     public function scopeAreaSearch($query, $area_id)
