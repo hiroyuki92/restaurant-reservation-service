@@ -90,7 +90,6 @@ class UserLoginTest extends TestCase
             'password' => Hash::make('password')
         ]);
 
-        // 正しい認証情報でログインを試みる
         $response = $this->post('/login', [
             'email' => 'testuser@example.com',
             'password' => 'password',
