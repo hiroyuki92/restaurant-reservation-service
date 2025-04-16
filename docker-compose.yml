@@ -1,6 +1,6 @@
+version: '3'
 services:
     nginx:
-        platform: linux/amd64
         image: nginx:latest
         ports:
             - "80:80"
@@ -13,7 +13,6 @@ services:
             - app-network
 
     php:
-        platform: linux/amd64
         build: ./docker/php
         volumes:
             - ./src:/var/www/
@@ -21,7 +20,6 @@ services:
             - app-network
 
     mysql:
-        platform: linux/amd64
         image: mysql:8.0.26
         environment:
             MYSQL_ROOT_PASSWORD: root
@@ -37,7 +35,6 @@ services:
             - app-network
 
     phpmyadmin:
-        platform: linux/amd64
         image: phpmyadmin/phpmyadmin:latest
         environment:
             - PMA_ARBITRARY=1
