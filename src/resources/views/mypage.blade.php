@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+<div class="row px-4">
     <div class="col-md-4 mb-5 pe-md-5 right-spacing">
         <div class="mb-4 fw-bold fs-4 mt-5 pt-5">予約状況</div>
         @if(count($reservations) > 0)
