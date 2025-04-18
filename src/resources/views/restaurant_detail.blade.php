@@ -14,7 +14,7 @@
             <div class="fs-3 fw-bold mb-0">{{ $restaurant->name }}</div>
         </div>
         <div class="mb-3">
-            <img src="{{ asset('/' . $restaurant->image_url) }}" class="img-fluid restaurant-img" alt="{{ $restaurant->name }}">
+            <img src="{{ $restaurant->image_url }}" class="img-fluid restaurant-img" alt="{{ $restaurant->name }}">
         </div>
         <div class="mb-3">
             <span class="badge text-dark bg-light fs-6">#{{ $restaurant->area->name }}</span>
