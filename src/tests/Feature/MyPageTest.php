@@ -21,7 +21,6 @@ class MyPageTest extends TestCase
         $this->user = User::factory()->create();
         $this->seed(\Database\Seeders\AreasTableSeeder::class);
         $this->seed(\Database\Seeders\GenresTableSeeder::class);
-        $this->seed(\Database\Seeders\RestaurantsTableSeeder::class);
     }
 
     /**
@@ -31,7 +30,12 @@ class MyPageTest extends TestCase
      */
     public function can_view_my_page()
     {
-        $restaurant = Restaurant::first();
+        $area = Area::first();
+        $genre = Genre::first();
+        $restaurant = Restaurant::factory()->create([
+            'area_id' => $area->id,
+            'genre_id' => $genre->id,
+        ]);
         $today = now();
         $reservationDate = $today->addDay()->toDateString();
 
@@ -47,7 +51,6 @@ class MyPageTest extends TestCase
         $reservation = Reservation::with('restaurant')->where('user_id', $this->user->id)->first();
         $this->assertNotNull($reservation);
 
-        $reservation = Reservation::with('restaurant')->first();
         $response = $this->actingAs($this->user)->get('/mypage');
 
         $response->assertStatus(200);
@@ -63,10 +66,10 @@ class MyPageTest extends TestCase
      */
     public function can_view_favorite_restaurants()
     {
-        $restaurants = Restaurant::take(3)->get();
+        $restaurants = Restaurant::factory()->count(3)->create();
         foreach ($restaurants as $restaurant) {
-        $this->user->favorites()->attach($restaurant->id);
-    }
+            $this->user->favorites()->attach($restaurant->id);
+        }
 
         $response = $this->actingAs($this->user)->get('/mypage');
 

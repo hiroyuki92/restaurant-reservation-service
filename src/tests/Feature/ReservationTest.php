@@ -21,7 +21,6 @@ class ReservationTest extends TestCase
         $this->user = User::factory()->create();
         $this->seed(\Database\Seeders\AreasTableSeeder::class);
         $this->seed(\Database\Seeders\GenresTableSeeder::class);
-        $this->seed(\Database\Seeders\RestaurantsTableSeeder::class);
     }
 
     /**
@@ -31,7 +30,7 @@ class ReservationTest extends TestCase
      */
     public function can_make_a_reservation()
     {
-        $restaurant = Restaurant::first();
+        $restaurant = Restaurant::factory()->create();
         $response = $this->actingAs($this->user)->get('/detail/' . $restaurant->id);
 
         $response->assertStatus(200);
@@ -66,7 +65,7 @@ class ReservationTest extends TestCase
      */
     public function cannot_reserve_past_date()
     {
-        $restaurant = Restaurant::first();
+        $restaurant = Restaurant::factory()->create();
         $response = $this->actingAs($this->user)->get('/detail/' . $restaurant->id);
 
         $response->assertStatus(200);

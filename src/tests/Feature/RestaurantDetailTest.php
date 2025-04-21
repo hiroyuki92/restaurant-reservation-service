@@ -17,9 +17,8 @@ class RestaurantDetailTest extends TestCase
     {
         $this->seed(\Database\Seeders\AreasTableSeeder::class);
         $this->seed(\Database\Seeders\GenresTableSeeder::class);
-        $this->seed(\Database\Seeders\RestaurantsTableSeeder::class);
 
-        $restaurant = Restaurant::first();
+        $restaurant = Restaurant::factory()->create();
         $response = $this->get('/detail/' . $restaurant->id);
 
         $response->assertStatus(200);

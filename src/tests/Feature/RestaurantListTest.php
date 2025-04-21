@@ -17,12 +17,13 @@ class RestaurantListTest extends TestCase
     {
         $this->seed(\Database\Seeders\AreasTableSeeder::class);
         $this->seed(\Database\Seeders\GenresTableSeeder::class);
-        $this->seed(\Database\Seeders\RestaurantsTableSeeder::class);
+        Restaurant::factory()->count(10)->create();
+
         $response = $this->get('/');
         $response->assertStatus(200);
 
         $restaurants = Restaurant::all();
-        $expectedCount = 20;
+        $expectedCount = 10;
 
         $this->assertEquals($expectedCount, $restaurants->count(),
         "商品の総数が期待値と異なります。期待値: {$expectedCount}, 実際: {$restaurants->count()}");
