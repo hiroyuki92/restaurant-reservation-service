@@ -63,4 +63,19 @@ a.btn i {
         margin-left: 10%;
     }
 
+    a.btn {
+        background-color: var(--primary-blue);
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid white;
+        font-size: 15px;
+    }
+
+    .badge {
+        display: block;
+        text-align: left;
+    }
+
 }
