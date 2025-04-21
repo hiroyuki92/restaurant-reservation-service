@@ -58,10 +58,10 @@ php artisan test
 ```
 
 ## 使用技術(実行環境)
-- **PHP** 7.4.9
+- **PHP** 8.3.20
 - **Laravel** 8.83.29
 - **MySQL** 8.0.26（Dockerコンテナ）
-- **Nginx** 1.27.3（Dockerコンテナ）
+- **Nginx** 1.27.4（Dockerコンテナ）
 
 
 ## ER図
@@ -72,7 +72,7 @@ erDiagram
         string name
         string email
         string password
-        string role
+        enum role
         datetime created_at
         datetime updated_at
     }
