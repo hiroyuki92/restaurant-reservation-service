@@ -2,7 +2,7 @@
 
 ## 環境構築
 **Dockerビルド**
-1. `git@github.com:hiroyuki92/restaurant-reservation-service.git`
+1. `git clone git@github.com:hiroyuki92/restaurant-reservation-service.git`
 2. `cd restaurant-reservation-service`     クローンしたディレクトリに移動する
 3. DockerDesktopアプリを立ち上げる
 4. `docker-compose up -d --build`
