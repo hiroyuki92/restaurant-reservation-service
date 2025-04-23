@@ -62,7 +62,6 @@ php artisan test
 ・予約変更機能  
 ・バリデーション  
 ・レスポンシブデザイン  
-・ストレージをAWSのS3に設定
 
 
 ## 使用技術(実行環境)
@@ -70,7 +69,6 @@ php artisan test
 - **Laravel** 8.83.29
 - **MySQL** 8.0.26（Dockerコンテナ）
 - **Nginx** 1.27.4（Dockerコンテナ）
-- **AWS S3**
 
 
 ## ER図
