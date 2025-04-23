@@ -70,6 +70,7 @@ php artisan test
 - **Laravel** 8.83.29
 - **MySQL** 8.0.26（Dockerコンテナ）
 - **Nginx** 1.27.4（Dockerコンテナ）
+- **AWS S3**
 
 
 ## ER図
